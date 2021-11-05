@@ -17,26 +17,31 @@ from urllib.request import urlretrieve
 
 # 3rd-party libraries I'll be using
 import matplotlib
+from matplotlib import pyplot as plt
 
 import pandas as pd
 import seaborn as sns
 
 from scipy import stats
 
-#matplotlib.rcParams['pdf.fonttype'] = 42
-#matplotlib.rcParams['ps.fonttype'] = 42
 matplotlib.rcParams['text.usetex'] = False
 matplotlib.rcParams['lines.markeredgewidth'] = 1
 
-def set_style():
-    plt.style.use(['seaborn-white', 'seaborn-paper'])    
+def set_style(font_size=12, is_seabron=True):
+    if is_seabron:
+        plt.style.use(['seaborn-white', 'seaborn-paper'])
+    else:
+        plt.style.use(['classic'])    
     font = {'family' : 'serif',
             'weight' : 'normal',
-            'size'   : 12}
-    font = {'family':'Times New Roman',
-            'weight' : 'normal',
-            'size'   : 12}
+            'size'   : font_size}
+    ticks = {}
+    # font = {'family':'Times New Roman',
+    #         'weight' : 'normal',
+    #         'size'   : 12}
+    plt.tick_params(which="major", direction="in")
     matplotlib.rc("font", **font)
+
 
 def set_size(fig, width=6, height=3):
     fig.set_size_inches(width, height)
@@ -52,11 +57,6 @@ def get_colors():
         [1, 1, 0.9]               # light yellow
     ])
 
-
-set_style()
-
-
-flatui = [ "#1C366A", "#106f96", "#1DABE6", "#2ecc71", "#C3CED0", "#E43034", "#3498db", "#e74c3c","#a65d42","#6e5200","#dcc4d2"]
-palette = sns.set_palette(flatui) # sns.color_palette("colorblind", 3) #"Set2"
-flatui = [ "#2ecc71", "#C3CED0", "#1DABE6", "#1C366A",  "#106f96", "#E43034", "#3498db", "#e74c3c","#a65d42","#6e5200","#dcc4d2"]
-palette_B = sns.set_palette(flatui) # sns.color_palette("colorblind", 3) #"Set2"
+def set_color_palette():
+    flatui = [ "#2ecc71", "#C3CED0", "#1DABE6", "#1C366A",  "#106f96", "#E43034", "#3498db", "#e74c3c","#a65d42","#6e5200","#dcc4d2"]
+    palette_B = sns.set_palette(flatui)

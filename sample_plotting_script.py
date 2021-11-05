@@ -10,6 +10,10 @@ import pickle
 
 from pnplot import *
 
+set_style()
+set_color_palette()
+
+
 n_scenario = 100
 
 # Read the results
